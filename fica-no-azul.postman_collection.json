@@ -1,0 +1,146 @@
+{
+  "info": {
+    "name": "Dashboard Financeiro API",
+    "_postman_id": "a1b2c3d4-e5f6-7890-1234-abcdef987654",
+    "description": "Coleção de requests para testar a API do Dashboard Financeiro em Flask",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Eduardo\",\n  \"email\": \"edu@test.com\",\n  \"password\": \"123456\",\n  \"profile\": \"conservador\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/auth/register", "host": ["{{base_url}}"], "path": ["auth","register"] }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"edu@test.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth","login"] }
+      }
+    },
+    {
+      "name": "Auth - Me",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/auth/me?user_id=1", "host": ["{{base_url}}"], "path": ["auth","me"], "query": [{ "key": "user_id", "value": "1" }] }
+      }
+    },
+    {
+      "name": "Categories - List",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/categories/?user_id=1", "host": ["{{base_url}}"], "path": ["categories",""], "query": [{ "key": "user_id", "value": "1" }] }
+      }
+    },
+    {
+      "name": "Categories - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Alimentação\",\n  \"type\": \"saida\",\n  \"user_id\": 1\n}"
+        },
+        "url": { "raw": "{{base_url}}/categories/", "host": ["{{base_url}}"], "path": ["categories",""] }
+      }
+    },
+    {
+      "name": "Transactions - List",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/transactions/?user_id=1", "host": ["{{base_url}}"], "path": ["transactions",""], "query": [{ "key": "user_id", "value": "1" }] }
+      }
+    },
+    {
+      "name": "Transactions - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 200.50,\n  \"type\": \"saida\",\n  \"category_id\": 1,\n  \"description\": \"Mercado do mês\",\n  \"user_id\": 1\n}"
+        },
+        "url": { "raw": "{{base_url}}/transactions/", "host": ["{{base_url}}"], "path": ["transactions",""] }
+      }
+    },
+    {
+      "name": "Transactions - Undo",
+      "request": {
+        "method": "POST",
+        "url": { "raw": "{{base_url}}/transactions/1/undo?user_id=1", "host": ["{{base_url}}"], "path": ["transactions","1","undo"], "query": [{ "key": "user_id", "value": "1" }] }
+      }
+    },
+    {
+      "name": "Metas - List",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/metas/?user_id=1", "host": ["{{base_url}}"], "path": ["metas",""], "query": [{ "key": "user_id", "value": "1" }] }
+      }
+    },
+    {
+      "name": "Metas - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Viajar para Europa\",\n  \"target_amount\": 10000,\n  \"deadline\": \"2026-12-31\",\n  \"kind\": \"caixinha\",\n  \"user_id\": 1\n}"
+        },
+        "url": { "raw": "{{base_url}}/metas/", "host": ["{{base_url}}"], "path": ["metas",""] }
+      }
+    },
+    {
+      "name": "Metas - Deposit",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 500,\n  \"user_id\": 1\n}"
+        },
+        "url": { "raw": "{{base_url}}/metas/1/deposit", "host": ["{{base_url}}"], "path": ["metas","1","deposit"] }
+      }
+    },
+    {
+      "name": "Metas - Progress",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/metas/1/progress?user_id=1", "host": ["{{base_url}}"], "path": ["metas","1","progress"], "query": [{ "key": "user_id", "value": "1" }] }
+      }
+    },
+    {
+      "name": "Investments - List",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/investments/?user_id=1", "host": ["{{base_url}}"], "path": ["investments",""], "query": [{ "key": "user_id", "value": "1" }] }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:5000" }
+  ]
+}

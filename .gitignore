@@ -1,1 +1,15 @@
-/__pycache__
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+dashboard.db
+.env
+.venv/
+venv/
+instance/
+.idea/
+.vscode/
+migrations/
+*.sqlite
+*.db
